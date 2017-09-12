@@ -49,6 +49,8 @@ RUN wget -O /usr/local/bin/robo https://github.com/consolidation/Robo/releases/d
 && wget -O /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /usr/local/bin/drupal && /usr/local/bin/drupal init \
 && wget -q https://getcomposer.org/installer -O - | php -- --install-dir=/usr/local/bin --filename=composer
 
+ENV PATH "$PATH:/usr/local/bin"
+
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
