@@ -765,14 +765,14 @@ $settings['file_scan_ignore_directories'] = [
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 $databases['default']['default'] = array (
-  'database' => getenv('MYSQL_DATABASE'),
-  'username' => getenv('MYSQL_USER'),
-  'password' => getenv('MYSQL_PASSWORD'),
+  'database' => getenv('DB_DATABASE'),
+  'username' => getenv('DB_USER'),
+  'password' => getenv('DB_PASSWORD'),
   'prefix' => '',
-  'host' => getenv('DBHOST'),
-  'port' => '',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\'getenv('DBVENDOR'),
-  'driver' => getenv('DBVENDOR'),                                                        
+  'host' => getenv('DB_HOST'),
+  'port' => getenv('DB_PORT'),
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\'+getenv('DB_VENDOR'),
+  'driver' => getenv('DB_VENDOR'),
 );
 
 ini_set('memory_limit',getenv('MEMORY_LIMIT'));
