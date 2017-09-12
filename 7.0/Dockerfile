@@ -22,7 +22,7 @@ LABEL summary="$SUMMARY" \
       io.k8s.description="$DESCRIPTION" \
       io.k8s.display-name="Apache 2.4 with PHP 7.0" \
       io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,php,php70,rh-php70" \
+      io.openshift.tags="builder,php,php70,rh-php70, Drupal, Drush" \
       name="centos/php-70-centos7" \
       com.redhat.component="rh-php70-docker" \
       version="7.0" \
@@ -30,7 +30,7 @@ LABEL summary="$SUMMARY" \
       maintainer="SoftwareCollections.org <sclorg@redhat.com>"
 
 # Install Apache httpd and PHP
-RUN yum install -y centos-release-scl && \
+RUN yum install -y centos-release-scl wget && \
     yum-config-manager --enable centos-sclo-rh-testing && \
     INSTALL_PKGS="rh-php70 rh-php70-php rh-php70-php-mysqlnd rh-php70-php-pgsql rh-php70-php-bcmath \
                   rh-php70-php-gd rh-php70-php-intl rh-php70-php-ldap rh-php70-php-mbstring rh-php70-php-pdo \
@@ -39,6 +39,14 @@ RUN yum install -y centos-release-scl && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS --nogpgcheck && \
     rpm -V $INSTALL_PKGS && \
     yum clean all -y
+
+
+
+# Install Drupal tools: Robo, Drush, Drupal console and Composer.
+RUN wget -O /usr/local/bin/robo https://github.com/consolidation/Robo/releases/download/1.0.4/robo.phar && chmod +x /usr/local/bin/robo \
+&& wget -O /usr/local/bin/drush https://s3.amazonaws.com/files.drush.org/drush.phar && chmod +x /usr/local/bin/drush \
+&& wget -O /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /usr/local/bin/drupal && /usr/local/bin/drupal init \
+&& wget -q https://getcomposer.org/installer -O - | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
@@ -56,6 +64,7 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/con
     mkdir /tmp/sessions && \
     chown -R 1001:0 /opt/app-root /tmp/sessions && \
     chmod -R a+rwx /tmp/sessions && \
+    chmod -R a+rwx /usr/local/bin && \
     chmod -R ug+rwx /opt/app-root && \
     chmod -R a+rwx /etc/opt/rh/rh-php70 && \
     chmod -R a+rwx /opt/rh/httpd24/root/var/run/httpd
