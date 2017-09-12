@@ -42,15 +42,11 @@ RUN yum install -y centos-release-scl wget && \
 
 
 
-# Install Drupal tools: Robo, Drush, Drupal console and Composer.
-RUN wget -O /usr/local/bin/robo https://github.com/consolidation/Robo/releases/download/1.0.4/robo.phar && chmod +x /usr/local/bin/robo \
-&& wget -O /usr/local/bin/drush https://s3.amazonaws.com/files.drush.org/drush.phar && chmod +x /usr/local/bin/drush \
-&& wget -O /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /usr/local/bin/drupal && /usr/local/bin/drupal init \
-&& wget -q https://getcomposer.org/installer -O - | php -- --install-dir=/usr/local/bin --filename=composer
+
 
 ENV PATH "$PATH:/usr/local/bin"
 
-RUN drush --version
+
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
