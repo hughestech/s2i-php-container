@@ -764,6 +764,11 @@ $settings['file_scan_ignore_directories'] = [
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
+
+$dbNamespace = "Drupal\\Core\\Database\\Driver\\";
+$dbVendor = getenv('DB_VENDOR');
+$dbNamespaceWVendor = $dbNamespace . $dbVendor;
+
 $databases['default']['default'] = array (
   'database' => getenv('DB_DATABASE'),
   'username' => getenv('DB_USER'),
@@ -771,8 +776,8 @@ $databases['default']['default'] = array (
   'prefix' => '',
   'host' => getenv('DB_HOST'),
   'port' => getenv('DB_PORT'),
-  'namespace' => ('Drupal\\Core\\Database\\Driver\\'+getenv('DB_VENDOR')),
-  'driver' => getenv('DB_VENDOR'),
+  'namespace' => $dbNamespaceWVendor,
+  'driver' => $dbVendor,
 );
 
 ini_set('memory_limit',getenv('MEMORY_LIMIT'));
