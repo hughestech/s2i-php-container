@@ -10,6 +10,10 @@ The resulting image can be run using [Docker](http://docker.io).
 
 Usage
 ---------------------
+To build in OpenShift:
+
+`oc new-app https://github.com/hughestech/s2i-php-drupal-container.git#drupal --context-dir=7.0`
+
 To build a simple [php-test-app](https://github.com/sclorg/s2i-php-container/tree/master/7.0/test/test-app) application
 using standalone [S2I](https://github.com/openshift/source-to-image) and then run the
 resulting image with [Docker](http://docker.io) execute:
