@@ -20,12 +20,12 @@ is probably as a replacement for CGI scripts."
 LABEL summary="$SUMMARY" \
       description="$DESCRIPTION" \
       io.k8s.description="$DESCRIPTION" \
-      io.k8s.display-name="Apache 2.4 with PHP 7.0" \
+      io.k8s.display-name="Apache 2.4 with PHP 7.0 and Drupal tools" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,php,php70,rh-php70, Drupal, Drush" \
       name="centos/php-70-centos7" \
       com.redhat.component="rh-php70-docker" \
-      version="7.0" \
+      version="1.1" \
       release="1" \
       maintainer="SoftwareCollections.org <sclorg@redhat.com>"
 
