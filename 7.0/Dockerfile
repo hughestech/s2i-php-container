@@ -43,6 +43,7 @@ RUN yum install -y centos-release-scl wget && \
 
 
 # Install Drupal tools: Robo, Drush, Drupal console and Composer.
+RUN echo "installing drush"
 RUN wget -O /usr/local/bin/robo https://github.com/consolidation/Robo/releases/download/1.0.4/robo.phar && chmod +x /usr/local/bin/robo \
 && wget -O /usr/local/bin/drush https://s3.amazonaws.com/files.drush.org/drush.phar && chmod +x /usr/local/bin/drush \
 && wget -O /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /usr/local/bin/drupal && /usr/local/bin/drupal init \
