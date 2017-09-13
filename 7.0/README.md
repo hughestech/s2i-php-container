@@ -18,11 +18,11 @@ To build a simple [php-test-app](https://github.com/sclorg/s2i-php-container/tre
 using standalone [S2I](https://github.com/openshift/source-to-image) and then run the
 resulting image with [Docker](http://docker.io) execute:
 
-*  **For RHEL based image**
+*  **For OpenShift**
+We want to specify the builder image.
     ```
-    $ s2i build https://github.com/sclorg/s2i-php-container.git --context-dir=7.0/test/test-app rhscl/php-70-rhel7 php-test-app
-    $ docker run -p 8080:8080 php-test-app
-    ```
+oc new-app 172.30.1.121:5000/test/s2i-php-drupal-container:latest~https://github.com/hughestech/open_social.git#dev-master
+```
 
 *  **For CentOS based image**
     ```
