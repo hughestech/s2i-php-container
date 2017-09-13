@@ -780,7 +780,10 @@ $databases['default']['default'] = array (
   'driver' => $dbVendor,
 );
 
-ini_set('memory_limit',getenv('MEMORY_LIMIT'));
+if (getenv("'MEMORY_LIMIT") !== false){
+    ini_set('memory_limit',getenv('MEMORY_LIMIT'));
+}
+
 
 $settings['install_profile'] = 'social';
 $config_directories['sync'] = 'sites/default/files/config_dir/sync';
