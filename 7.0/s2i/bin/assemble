@@ -32,14 +32,14 @@ if [ -f composer.json ]; then
   fi
 
   # Install App dependencies using Composer
-  ./composer.phar install --no-interaction --no-ansi --optimize-autoloader
+  composer install --no-interaction --no-ansi --optimize-autoloader
 
 
   echo "Copying settings file to drupal"
 
   cp /opt/app-root/etc/drupal/settings.php /opt/app-root/src/sites/default/settings.php
   chmod 664 /opt/app-root/src/sites/default/settings.php
-  
+
   if [ ! -f composer.lock ]; then
     echo -e "\nConsider adding a 'composer.lock' file into your source repository.\n"
   fi
