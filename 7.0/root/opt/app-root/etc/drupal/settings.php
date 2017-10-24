@@ -783,7 +783,7 @@ $databases['default']['default'] = array (
 if (getenv("'MEMORY_LIMIT") !== false){
     ini_set('memory_limit',getenv('MEMORY_LIMIT'));
 }
-ini_set('memory_limit','612M');
+
 
 
 $settings['install_profile'] = 'social';
