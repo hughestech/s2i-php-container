@@ -41,7 +41,7 @@ if [ -f composer.json ]; then
   fix-permissions ./
 
   echo "Make CONFIGURATION DIRECTORY: SYNC"
-  mkdir -P /opt/app-root/src/sites/default/files/config_dir/sync
+  mkdir -p /opt/app-root/src/sites/default/files/config_dir/sync
 
   echo "Harden settings file and default folder"
   cp /opt/app-root/etc/drupal/settings.php /opt/app-root/src/sites/default/settings.php
