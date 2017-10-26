@@ -37,6 +37,10 @@ if [ -f composer.json ]; then
 
   echo "Copying settings file to drupal"
 
+  echo "Run fix-permissions"
+  fix-permissions ./
+
+  echo "Harden settings file and default folder"
   cp /opt/app-root/etc/drupal/settings.php /opt/app-root/src/sites/default/settings.php
   chmod 440 /opt/app-root/src/sites/default/settings.php
   chmod 755 /opt/app-root/src/sites/default/
