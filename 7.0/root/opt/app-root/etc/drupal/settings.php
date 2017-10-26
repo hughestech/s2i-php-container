@@ -780,9 +780,10 @@ $databases['default']['default'] = array (
   'driver' => $dbVendor,
 );
 
-if (getenv("'MEMORY_LIMIT") !== false){
+if (getenv("MEMORY_LIMIT") !== false){
     ini_set('memory_limit',getenv('MEMORY_LIMIT'));
 }
+
 
 
 $settings['install_profile'] = 'social';
