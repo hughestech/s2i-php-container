@@ -39,7 +39,6 @@ if [ -f composer.json ]; then
 
   cp /opt/app-root/etc/drupal/settings.php /opt/app-root/src/sites/default/settings.php
   chmod 440 /opt/app-root/src/sites/default/settings.php
-  chattr +i /opt/app-root/src/sites/default/settings.php
   chmod 755 /opt/app-root/src/sites/default/
 
   dnam="/opt/app-root/src/sites/default/C D"
@@ -49,7 +48,7 @@ if [ -f composer.json ]; then
   then
       # Not writable. Pop the error and exit.
       echo "Directory $dnam is not writable"
-      err=1
+      
   fi
 
   if [ ! -f composer.lock ]; then
