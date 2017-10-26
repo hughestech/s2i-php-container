@@ -38,7 +38,8 @@ if [ -f composer.json ]; then
   echo "Copying settings file to drupal"
 
   cp /opt/app-root/etc/drupal/settings.php /opt/app-root/src/sites/default/settings.php
-  chmod 444 /opt/app-root/src/sites/default/settings.php
+  chmod 0644 /opt/app-root/src/sites/default/settings.php
+  chmod 755 /opt/app-root/src/sites/default/
 
   if [ ! -f composer.lock ]; then
     echo -e "\nConsider adding a 'composer.lock' file into your source repository.\n"
