@@ -61,4 +61,4 @@ if [ -f composer.json ]; then
 fi
 
 # Fix source directory permissions
-#fix-permissions ./
+ fix-permissions ./
