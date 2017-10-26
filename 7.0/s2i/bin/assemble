@@ -38,8 +38,19 @@ if [ -f composer.json ]; then
   echo "Copying settings file to drupal"
 
   cp /opt/app-root/etc/drupal/settings.php /opt/app-root/src/sites/default/settings.php
-  chmod 0644 /opt/app-root/src/sites/default/settings.php
+  chmod 440 /opt/app-root/src/sites/default/settings.php
+  chattr +i /opt/app-root/src/sites/default/settings.php
   chmod 755 /opt/app-root/src/sites/default/
+
+  dnam="/opt/app-root/src/sites/default/C D"
+
+  # Is the directory writable
+  if [[ ! -w $dnam ]]      # No quotation marks needed!
+  then
+      # Not writable. Pop the error and exit.
+      echo "Directory $dnam is not writable"
+      err=1
+  fi
 
   if [ ! -f composer.lock ]; then
     echo -e "\nConsider adding a 'composer.lock' file into your source repository.\n"
