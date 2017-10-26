@@ -48,7 +48,7 @@ if [ -f composer.json ]; then
   then
       # Not writable. Pop the error and exit.
       echo "Directory $dnam is not writable"
-      
+
   fi
 
   if [ ! -f composer.lock ]; then
@@ -57,4 +57,4 @@ if [ -f composer.json ]; then
 fi
 
 # Fix source directory permissions
-fix-permissions ./
+#fix-permissions ./
