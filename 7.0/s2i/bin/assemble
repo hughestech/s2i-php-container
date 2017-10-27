@@ -49,8 +49,8 @@ if [ -f composer.json ]; then
 
   mkdir -p /opt/app-root/src/sites/default/files
   chmod 755 /opt/app-root/src/sites/default/
-  #chgrp -Rv 1001 sites/default/files
-  #chmod 2775 sites/default/files
+  chgrp -Rv 1001 sites/default/files
+  chmod 2775 sites/default/files
 
   chmod 440 /opt/app-root/src/sites/default/settings.php
 
