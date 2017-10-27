@@ -48,7 +48,7 @@ if [ -f composer.json ]; then
 
 
   echo "dl file_permissions using Drush"
-  drush dl file_permissions-8.x --destination=~/.drush
+  drush dl file_permissions --destination=~/.drush
 
   echo "setting correct permissions using Drush"
   drush cc drush
