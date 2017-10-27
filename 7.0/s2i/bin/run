@@ -48,4 +48,8 @@ envsubst < /opt/app-root/etc/conf.d/00-documentroot.conf.template > /opt/app-roo
 echo "running init drush cr"
 drush cr
 
+echo "Setting correct permissions"
+drush cc drush
+drush fp
+
 exec httpd -D FOREGROUND
