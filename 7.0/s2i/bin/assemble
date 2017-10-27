@@ -47,18 +47,15 @@ if [ -f composer.json ]; then
   cp /opt/app-root/etc/drupal/settings.php /opt/app-root/src/sites/default/settings.php
 
 
-  echo "dl file_permissions using Drush"
-  drush dl file_permissions --destination=~/.drush
+  echo "set correct permissions"
 
-  echo "setting correct permissions using Drush"
-  drush cc drush
-  drush fp
-  #mkdir -p /opt/app-root/src/sites/default/files
-  #chmod 755 /opt/app-root/src/sites/default/
+  mkdir -p /opt/app-root/src/sites/default/files
+  chmod 755 -R /opt/app-root/src/sites/default/
+  
   #chgrp -Rv 1001 sites/default/files
   #chmod 2775 sites/default/files
 
-  #chmod 440 /opt/app-root/src/sites/default/settings.php
+  chmod 440 /opt/app-root/src/sites/default/settings.php
 
 
 
