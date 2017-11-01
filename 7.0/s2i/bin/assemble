@@ -29,7 +29,6 @@ if [ -f composer.json ]; then
     # save log for exception 
     echo "Installing drupalconsole using composer"
     composer require drupal/console:~1.0 
-    --sort-packages 
     --no-update
     
     composer update
