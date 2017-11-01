@@ -29,12 +29,17 @@ if [ -f composer.json ]; then
 
   # Change the repo mirror if provided
   if [ -n "$COMPOSER_MIRROR" ]; then
-    ./composer.phar config -g repositories.packagist composer $COMPOSER_MIRROR
+    echo " Change the repo mirror because it is provided"
+    composer config -g repositories.packagist composer $COMPOSER_MIRROR
   fi
 
   echo "install drupal console using composer"
   # TODO: we currently install drupalconsole in two ways. Need to choice one.
-  composer require drupal/console:~1.0 --prefer-dist --optimize-autoloader
+  composer require drupal/console:~1.0 \
+  --prefer-dist \
+  --optimize-autoloader \
+  --sort-packages \
+  --no-update
   
   echo "Install App dependencies using Composer"
   composer install --no-interaction --no-ansi --optimize-autoloader
