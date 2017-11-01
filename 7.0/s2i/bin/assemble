@@ -29,7 +29,7 @@ if [ -f composer.json ]; then
     # save log for exception 
     echo "Installing drupalconsole using composer"
     composer require drupal/console:~1.0 
-    --no-update
+
     
     composer update
   }
@@ -45,13 +45,7 @@ if [ -f composer.json ]; then
     composer config -g repositories.packagist composer $COMPOSER_MIRROR
   fi
 
-  echo "install drupal console using composer"
-  # TODO: we currently install drupalconsole in two ways. Need to choice one.
-  composer require drupal/console:~1.0 \
-  --prefer-dist \
-  --optimize-autoloader \
-  --sort-packages \
-  --no-update
+
   
   echo "Install App dependencies using Composer"
   composer install --no-interaction --no-ansi --optimize-autoloader
