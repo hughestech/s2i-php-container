@@ -31,7 +31,11 @@ if [ -f composer.json ]; then
     ./composer.phar config -g repositories.packagist composer $COMPOSER_MIRROR
   fi
 
-  # Install App dependencies using Composer
+  echo "install drupal console using composer"
+  # TODO: we currently install drupalconsole in two ways. Need to choice one.
+  composer require drupal/console:~1.0 --prefer-dist --optimize-autoloader
+  
+  echo "Install App dependencies using Composer"
   composer install --no-interaction --no-ansi --optimize-autoloader
 
 
