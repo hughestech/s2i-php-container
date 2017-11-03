@@ -37,7 +37,8 @@ if [ -f composer.json ]; then
 
   echo "Copying settings file to drupal"
 
-
+  echo "Run fix-permissions"
+  fix-permissions ./
 
   echo "Make CONFIGURATION DIRECTORY: SYNC"
   mkdir -p /opt/app-root/src/sites/default/files/config_dir/sync
@@ -49,6 +50,7 @@ if [ -f composer.json ]; then
   echo "set correct permissions"
 
   mkdir -p /opt/app-root/src/sites/default/files
+  mkdir -p /opt/app-root/src/libraries
   chmod 755 -R /opt/app-root/src/sites/default/
   chmod 777 -R /opt/app-root/src/sites/default/files
 
@@ -58,8 +60,6 @@ if [ -f composer.json ]; then
   chmod 440 /opt/app-root/src/sites/default/settings.php
 
 
-  echo "Run fix-permissions"
-  fix-permissions ./
 
 
   if [ ! -f composer.lock ]; then
