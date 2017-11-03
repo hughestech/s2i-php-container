@@ -50,8 +50,8 @@ if [ -f composer.json ]; then
   echo "set correct permissions"
 
   mkdir -p /opt/app-root/src/sites/default/files
-  chmod 755 -R /opt/app-root/src/sites/default/
-  chmod 777 -R /opt/app-root/src/sites/default/files
+  chmod 664 -R /opt/app-root/src/sites/default/
+  chmod 664 -R /opt/app-root/src/sites/default/files
 
   #chgrp -Rv 1001 sites/default/files
   #chmod 2775 sites/default/files
