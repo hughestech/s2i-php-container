@@ -20,17 +20,17 @@ if [ -f composer.json ]; then
   wget -O /usr/local/bin/robo https://github.com/consolidation/Robo/releases/download/1.0.4/robo.phar && chmod +x /usr/local/bin/robo \
   && wget -O /usr/local/bin/drush https://s3.amazonaws.com/files.drush.org/drush.phar && chmod +x /usr/local/bin/drush \
   && wget -q https://getcomposer.org/installer -O - | php -- --install-dir=/usr/local/bin --filename=composer
-  
+
   { # try
     echo "trying to install drupalconsole"
-    wget -O /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /usr/local/bin/drupal && /usr/local/bin/drupal init 
+    wget -O /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /usr/local/bin/drupal && /usr/local/bin/drupal init
 
   } || { # catch
-    # save log for exception 
+    # save log for exception
     echo "Installing drupalconsole using composer"
-    composer require drupal/console:~1.0 
+    composer require drupal/console:~1.0
 
-    
+
     composer update
   }
 
@@ -46,7 +46,7 @@ if [ -f composer.json ]; then
   fi
 
 
-  
+
   echo "Install App dependencies using Composer"
   composer install --no-interaction --no-ansi --optimize-autoloader
 
@@ -57,7 +57,7 @@ if [ -f composer.json ]; then
   fix-permissions ./
 
   echo "Make CONFIGURATION DIRECTORY: SYNC"
-  mkdir -p /opt/app-root/src/sites/default/files/config_dir/sync
+  mkdir -p /opt/app-root/src/$DOCUMENTROOT/sites/default/files/config_dir/sync
 
 
   cp /opt/app-root/etc/drupal/settings.php /opt/app-root/src/$DOCUMENTROOT/sites/default/settings.php
