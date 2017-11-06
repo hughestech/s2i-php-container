@@ -68,7 +68,6 @@ if [ -f composer.json ]; then
   # envvar  DOCUMENTROOT
 
   mkdir -p /opt/app-root/src/$DOCUMENTROOT/sites/default/files
-  mkdir -p /opt/app-root/src/libraries
   chmod 755 -R /opt/app-root/src/$DOCUMENTROOT/sites/default/
   chmod 777 -R /opt/app-root/src/$DOCUMENTROOT/sites/default/files
 
