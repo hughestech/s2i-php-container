@@ -38,7 +38,9 @@ RUN yum install -y centos-release-scl wget && \
                   rh-php70-php-gmp" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS --nogpgcheck && \
     rpm -V $INSTALL_PKGS && \
-    yum clean all -y
+    yum clean all -y && \
+    pecl install v8js-1.4.1 && \
+    echo extension=v8js.so > /etc/php/7.0/cli/conf.d/99-v8js.ini
 
 
 
