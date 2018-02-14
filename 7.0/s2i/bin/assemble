@@ -25,7 +25,7 @@ if [ -f composer.json ]; then
     echo "################################"
     echo "trying to install drupalconsole"
     echo "################################"
-    wget -O /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /opt/app-root/src && /opt/app-root/src init
+    wget -O /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /opt/app-root/src/drupal && /opt/app-root/src/drupal init
 
   } || { # catch
     # save log for exception
