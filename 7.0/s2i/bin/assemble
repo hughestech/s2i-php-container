@@ -22,12 +22,16 @@ if [ -f composer.json ]; then
   && wget -q https://getcomposer.org/installer -O - | php -- --install-dir=/usr/local/bin --filename=composer
 
   { # try
+    echo "################################"
     echo "trying to install drupalconsole"
-    wget -O /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /usr/local/bin/drupal && /usr/local/bin/drupal init
+    echo "################################"
+    wget -O /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /opt/app-root/src && /opt/app-root/src init
 
   } || { # catch
     # save log for exception
+    echo "################################"
     echo "Installing drupalconsole using composer"
+    echo "################################"
     composer require drupal/console:~1.0
 
 
