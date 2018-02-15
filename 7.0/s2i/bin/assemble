@@ -37,7 +37,7 @@ if [ -f composer.json ]; then
     echo "################################"
     echo "Installing drupalconsole using composer"
     echo "################################"
-    composer require drupal/console:~1.0
+    ./composer require drupal/console:~1.0
 
 
     ./composer update
