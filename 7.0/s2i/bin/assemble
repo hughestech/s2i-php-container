@@ -20,6 +20,7 @@ if [ -f composer.json ]; then
   wget -O /usr/local/bin/robo https://github.com/consolidation/Robo/releases/download/1.0.4/robo.phar && chmod +x /usr/local/bin/robo \
   && wget -O /usr/local/bin/drush https://s3.amazonaws.com/files.drush.org/drush.phar && chmod +x /usr/local/bin/drush \
   && wget -q https://getcomposer.org/installer -O - | php -- --install-dir=/usr/local/bin --filename=composer
+  chmod +x /usr/local/bin/composer
 
   { # try
     echo "################################"
