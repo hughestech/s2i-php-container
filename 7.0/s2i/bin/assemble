@@ -37,10 +37,10 @@ if [ -f composer.json ]; then
     echo "################################"
     echo "Installing drupalconsole using composer"
     echo "################################"
-    ./composer require drupal/console:~1.0
+    ./composer.phar require drupal/console:~1.0
 
 
-    ./composer update
+    ./composer.phar update
   }
 
   if [ "$(ls -a /tmp/artifacts/ 2>/dev/null)" ]; then
