@@ -57,7 +57,7 @@ if [ -f composer.json ]; then
 
 
   echo "Install App dependencies using Composer"
-  composer install --no-interaction --no-ansi --optimize-autoloader
+  ./composer.phar install --no-interaction --no-ansi --optimize-autoloader
 
 
   echo "Copying settings file to drupal"
