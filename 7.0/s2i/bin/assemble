@@ -40,7 +40,7 @@ if [ -f composer.json ]; then
     composer require drupal/console:~1.0
 
 
-    composer update
+    ./composer update
   }
 
   if [ "$(ls -a /tmp/artifacts/ 2>/dev/null)" ]; then
