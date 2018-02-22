@@ -34,13 +34,21 @@ if [ -f composer.json ]; then
 
   } || { # catch
     # save log for exception
-    echo "################################"
-    echo "Installing drupalconsole using composer"
-    echo "################################"
-    ./composer.phar require drupal/console:~1.0
 
 
-    ./composer.phar update
+    {
+      if [  -f /composer.phar ]; then
+        echo "################################"
+        echo "Installing drupalconsole using composer"
+        echo "################################"
+
+        ./composer.phar require drupal/console:~1.0
+        ./composer.phar update
+
+
+      fi
+    }
+
   }
 
   if [ "$(ls -a /tmp/artifacts/ 2>/dev/null)" ]; then
