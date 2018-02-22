@@ -18,7 +18,7 @@ if [ -f composer.json ]; then
   echo "####   INSTALLING DRUSH    #####"
   echo "################################"
   wget -O /usr/local/bin/robo https://github.com/consolidation/Robo/releases/download/1.0.4/robo.phar && chmod +x /usr/local/bin/robo \
-  && wget -O /opt/app-root/src/drush https://s3.amazonaws.com/files.drush.org/drush.phar && chmod +x /opt/app-root/src/drush && /opt/app-root/src/drush init \
+  && wget -O /opt/app-root/src/drush https://github.com/drush-ops/drush/releases/download/8.1.16/drush.phar && chmod +x /opt/app-root/src/drush && /opt/app-root/src/drush init \
   && wget -q https://getcomposer.org/installer -O - | php -- --install-dir=/usr/local/bin --filename=composer
 
 
