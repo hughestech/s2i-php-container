@@ -53,4 +53,12 @@ fi
 # pre-start files
 process_extending_files ${APP_DATA}/php-pre-start/ ${PHP_CONTAINER_SCRIPTS_PATH}/pre-start/
 
+echo "Change to drupal directory"
+cd /opt/app-root/src/$DOCUMENTROOT
+pwd
+
+echo "running init drush cr"
+drush cr
+
+
 exec httpd -D FOREGROUND

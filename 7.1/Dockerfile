@@ -28,9 +28,9 @@ is probably as a replacement for CGI scripts."
 LABEL summary="${SUMMARY}" \
       description="${DESCRIPTION}" \
       io.k8s.description="${DESCRIPTION}" \
-      io.k8s.display-name="Apache 2.4 with PHP ${PHP_VERSION}" \
+      io.k8s.display-name="Apache 2.4 with PHP ${PHP_VERSION} and Drupal tools" \
       io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,${NAME},${NAME}${PHP_VER_SHORT},rh-${NAME}${PHP_VER_SHORT}" \
+      io.openshift.tags="builder,${NAME},${NAME}${PHP_VER_SHORT},rh-${NAME}${PHP_VER_SHORT}, Drupal, Drush" \
       io.openshift.s2i.scripts-url="image:///usr/libexec/s2i" \
       io.s2i.scripts-url="image:///usr/libexec/s2i" \
       name="centos/${NAME}-${PHP_VER_SHORT}-centos7" \
@@ -51,6 +51,7 @@ RUN yum install -y centos-release-scl && \
     rpm -V $INSTALL_PKGS && \
     yum clean all -y
 
+ENV PATH "$PATH:/usr/local/bin"
 ENV PHP_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/php/ \
     APP_DATA=${APP_ROOT}/src \
     PHP_DEFAULT_INCLUDE_PATH=/opt/rh/rh-php71/root/usr/share/pear \
@@ -71,6 +72,20 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 # Copy extra files to the image.
 COPY ./root/ /
 
+# In order to drop the root user, we have to make some directories world
+# writeable as OpenShift default security model is to run the container under
+# random UID.
+RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf && \
+    sed -i '/php_value session.save_path/d' /opt/rh/httpd24/root/etc/httpd/conf.d/rh-php70-php.conf && \
+    head -n151 /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf | tail -n1 | grep "AllowOverride All" || exit && \
+    echo "IncludeOptional /opt/app-root/etc/conf.d/*.conf" >> /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf && \
+    mkdir /tmp/sessions && \
+    chown -R 1001:0 /opt/app-root /tmp/sessions && \
+    chmod -R a+rwx /tmp/sessions && \
+    chmod -R a+rwx /usr/local/bin && \
+    chmod -R ug+rwx /opt/app-root && \
+    chmod -R a+rwx /etc/opt/rh/rh-php70 && \
+    chmod -R a+rwx /opt/rh/httpd24/root/var/run/httpd
 # Reset permissions of filesystem to default values
 RUN /usr/libexec/container-setup && rpm-file-permissions
 
