@@ -6,7 +6,7 @@ FROM centos/s2i-base-centos7
 EXPOSE 8080
 
 ENV PHP_VERSION=7.0 \
-    COMPOSER_ARGS="--no-dev"
+    COMPOSER_ARGS="--no-dev" \
     PATH=$PATH:/opt/rh/rh-php70/root/usr/bin
 
 ENV SUMMARY="Platform for building and running PHP $PHP_VERSION applications" \
